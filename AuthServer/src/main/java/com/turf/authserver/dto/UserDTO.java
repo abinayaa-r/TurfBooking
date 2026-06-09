@@ -1,4 +1,4 @@
-package com.turf.user.dto;
+package com.turf.authserver.dto;
 
 import lombok.Data;
 
@@ -8,7 +8,6 @@ public class UserDTO {
 	private Long phoneNo;
 	private String name;
 	private String password;
-	private String Address;
 	private String role;
 
 }

@@ -25,16 +25,35 @@ public class TurfUserServiceImpl implements TurfServiceUser{
 	
 
 	@Override
-	public String registerUser(UserDTO userDTO) throws TurfUserException {
-		return null;
+	public UserDTO registerUser(UserDTO userDTO) throws TurfUserException {
+		
+		Optional<User> userOptional = repository.findById(userDTO.getPhoneNo());
+		if(userOptional.isPresent()) {
+			throw new TurfUserException("SERVICE_USER_ALREADY_PRESENT");
+		}
+		User user = modelMapper.map(userDTO, User.class);
+		repository.save(user);
+		
+		return userDTO ;
 	}
 
 	@Override
 	public UserDTO viewUserDetails(Long phoneNo) throws TurfUserException {
 
-		System.out.println("in serv "+phoneNo);
+		System.out.println("in serv UserGetting-UserSErvice-----------"+phoneNo);
 		Optional<User> optional = repository.findById(phoneNo);
 		System.out.println( "in serv 1111 "+ optional);
+		User user = optional.orElseThrow(()-> new TurfUserException("SERVICE_USER_NOT_FOUND"));
+		
+		return modelMapper.map(user, UserDTO.class);
+	}
+	
+	@Override
+	public UserDTO viewByUsername(String userName) throws TurfUserException {
+
+		System.out.println("in serv111111111 UserName-ServiceUser "+userName);
+		Optional<User> optional = repository.findByName(userName);
+		System.out.println( "in serv 213124 "+ optional);
 		User user = optional.orElseThrow(()-> new TurfUserException("SERVICE_USER_NOT_FOUND"));
 		
 		return modelMapper.map(user, UserDTO.class);

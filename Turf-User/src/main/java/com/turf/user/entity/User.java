@@ -11,7 +11,9 @@ public class User {
 	@Id
 	private Long phoneNo;
 	private String name;
+	private String password;
 	private String Address;
+	private String role;
 	
 	
 }

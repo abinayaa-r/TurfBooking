@@ -1,0 +1,16 @@
+stages:
+  - build
+  
+maven-build:
+  stage: build
+  image: maven:3.9.9-eclipse-temurin-17	
+  script:
+    - mvn clean install
+	
+	
+	#maven-build is just a job name and nxt line build means just name of stage.. you can give anything
+	# we have java 17, mvn in our system.. but pipeline don't have anything like that
+	#So gitlab uses a existing docker container from a docker hub.mvn3.9.9 is a existing image in docker hub
+	#it does docker pull mvn -3.9.9-eclipse-temurin-17 & docker run mvn-3.9.9-eclipse-temurin-17	
+	# it means java 17, mvn 3.9.9 and jdk is temurin 
+	# using existing container, it use all java version , mvn and runs the script(mvn clean install) we gave

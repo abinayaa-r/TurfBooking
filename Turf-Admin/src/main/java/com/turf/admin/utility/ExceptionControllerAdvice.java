@@ -1,7 +1,6 @@
-package com.turf.user.utility;
+package com.turf.admin.utility;
 
 import java.util.stream.Collectors;
-
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.turf.user.exception.TurfUserException;
+import com.turf.admin.exception.TurfAdminException;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -27,8 +26,8 @@ public class ExceptionControllerAdvice {
 	@Autowired
 	Environment environment;
 	
-	@ExceptionHandler(TurfUserException.class)
-	public ResponseEntity<ErrorInfo> turfUserExceptionHandler(TurfUserException exception){
+	@ExceptionHandler(TurfAdminException.class)
+	public ResponseEntity<ErrorInfo> turfUserExceptionHandler(TurfAdminException exception){
 		logger.error(" in RestCntrller Advice turf " +exception.getMessage(),exception);
 		ErrorInfo info = new ErrorInfo();
 		info.setErrorCode(HttpStatus.BAD_REQUEST.value());

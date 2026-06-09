@@ -21,7 +21,6 @@ import jakarta.validation.ConstraintViolationException;
 
 @RestControllerAdvice
 public class ExceptionControllerAdvice {
-
 	private static final Logger logger = LogManager.getLogger(ExceptionControllerAdvice.class);
 	
 	@Autowired
